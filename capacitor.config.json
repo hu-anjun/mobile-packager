@@ -1,0 +1,9 @@
+{
+  "appId": "com.example.webapp",
+  "appName": "我的备忘录",
+  "webDir": "www",
+  "server": {
+    "url": "https://etriku.huanjun.dpdns.org/deploy/DX7aC6/index.html",
+    "cleartext": false
+  }
+}

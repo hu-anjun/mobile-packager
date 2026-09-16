@@ -1,0 +1,16 @@
+{
+  "name": "mobile-packager",
+  "version": "1.0.0",
+  "description": "将线上网页地址打包成安卓 APK 的测试项目（Capacitor + GitHub Actions）",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Web 内容由远程 URL 提供，无需本地构建'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0"
+  }
+}
