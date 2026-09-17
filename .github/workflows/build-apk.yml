@@ -85,3 +85,23 @@ jobs:
           name: apk-${{ github.event.inputs.app_name }}
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 7
+
+      # 10. 发布 GitHub Release：把 APK 作为附件发布到本仓库（仓库已 public，附件 URL 匿名可下，手机扫码直接装）
+      #     tag 用 app-{app_id}-{runId} 唯一，避免同 tag 覆盖的删旧 tag 问题；pre-release 不占 latest feed
+      #     使用自带的 GITHUB_TOKEN，无需额外配置 secrets
+      - name: 发布 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-${{ github.event.inputs.app_id }}-${{ github.run_id }}
+          name: ${{ github.event.inputs.app_name }}
+          body: |
+            自动打包产物。
+            - App 名称：${{ github.event.inputs.app_name }}
+            - 包名：${{ github.event.inputs.app_id }}
+            - 网页地址：${{ github.event.inputs.web_url }}
+            - 构建来源 Run：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          files: android/app/build/outputs/apk/debug/app-debug.apk
+          prerelease: true
+          make_latest: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
