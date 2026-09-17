@@ -4,6 +4,11 @@
 
 name: Build Android APK
 
+# 显式授予 GITHUB_TOKEN 写 contents 权限，用于发布 Release（创建 tag/上传 asset）
+# 否则遇到 "Resource not accessible by integration" 错误
+permissions:
+  contents: write
+
 on:
   # 手动触发：点击仓库 Actions → 本工作流 → Run workflow
   workflow_dispatch:
